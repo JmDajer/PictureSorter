@@ -17,32 +17,17 @@ namespace App
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void SortButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ImportButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
-        {
-
-        }
-
-        private void View_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FolderSettingsBox_Enter(object sender, EventArgs e)
+        private void ExportButton_Click(object sender, EventArgs e)
         {
 
         }

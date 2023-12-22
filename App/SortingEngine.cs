@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace App
 {
-    internal class BusinessLogic
+    internal class SortingEngine
     {
-        private string ImportLocation { get; set; }
-        private string OutputLocation { get; set; }
-
-
     }
 }

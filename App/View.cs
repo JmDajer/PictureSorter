@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace App
 {
@@ -24,12 +25,26 @@ namespace App
 
         private void ImportButton_Click(object sender, EventArgs e)
         {
-
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.ShowNewFolderButton = true;
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                ImportTextBox.Text = dialog.SelectedPath;
+                Environment.SpecialFolder root = dialog.RootFolder;
+            }
         }
 
         private void ExportButton_Click(object sender, EventArgs e)
         {
-
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.ShowNewFolderButton = true;
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                ExportTextBox.Text = dialog.SelectedPath;
+                Environment.SpecialFolder root = dialog.RootFolder;
+            }
         }
     }
 }

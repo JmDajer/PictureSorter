@@ -94,7 +94,7 @@
             this.ImportButton.Name = "ImportButton";
             this.ImportButton.Size = new System.Drawing.Size(30, 27);
             this.ImportButton.TabIndex = 3;
-            this.ImportButton.Text = "...";
+            this.ImportButton.Text = "···";
             this.ImportButton.UseVisualStyleBackColor = true;
             this.ImportButton.Click += new System.EventHandler(this.ImportButton_Click);
             // 
@@ -107,7 +107,7 @@
             this.ExportButton.Name = "ExportButton";
             this.ExportButton.Size = new System.Drawing.Size(30, 27);
             this.ExportButton.TabIndex = 6;
-            this.ExportButton.Text = "...";
+            this.ExportButton.Text = "···";
             this.ExportButton.UseVisualStyleBackColor = true;
             this.ExportButton.Click += new System.EventHandler(this.ExportButton_Click);
             // 

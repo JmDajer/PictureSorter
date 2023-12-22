@@ -8,5 +8,9 @@ namespace App
 {
     internal class BusinessLogic
     {
+        private string ImportLocation { get; set; }
+        private string OutputLocation { get; set; }
+
+
     }
 }

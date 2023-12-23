@@ -21,6 +21,7 @@ namespace App
         private void SortButton_Click(object sender, EventArgs e)
         {
             SortingEngine sortingEngine = new SortingEngine(ImportTextBox.Text, ExportTextBox.Text);
+            sortingEngine.SortingProgressChanged += SortingEngine_SortingProgressChanged;
             sortingEngine.Sort();
         }
 
@@ -46,6 +47,11 @@ namespace App
                 ExportTextBox.Text = dialog.SelectedPath;
                 Environment.SpecialFolder root = dialog.RootFolder;
             }
+        }
+
+        private void SortingEngine_SortingProgressChanged(object sender, SortingProgressEventArgs e)
+        {
+            ProgressBar.Value = e.Progress;
         }
     }
 }

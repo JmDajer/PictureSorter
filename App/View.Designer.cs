@@ -71,7 +71,7 @@
             this.ImportTextBox.Location = new System.Drawing.Point(11, 65);
             this.ImportTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.ImportTextBox.Name = "ImportTextBox";
-            this.ImportTextBox.Size = new System.Drawing.Size(472, 26);
+            this.ImportTextBox.Size = new System.Drawing.Size(472, 30);
             this.ImportTextBox.TabIndex = 1;
             // 
             // ImportLable
@@ -81,7 +81,7 @@
             this.ImportLable.Location = new System.Drawing.Point(10, 42);
             this.ImportLable.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ImportLable.Name = "ImportLable";
-            this.ImportLable.Size = new System.Drawing.Size(102, 19);
+            this.ImportLable.Size = new System.Drawing.Size(123, 23);
             this.ImportLable.TabIndex = 2;
             this.ImportLable.Text = "Piltide asukoht";
             // 
@@ -118,7 +118,7 @@
             this.ExportLable.Location = new System.Drawing.Point(10, 103);
             this.ExportLable.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ExportLable.Name = "ExportLable";
-            this.ExportLable.Size = new System.Drawing.Size(176, 19);
+            this.ExportLable.Size = new System.Drawing.Size(213, 23);
             this.ExportLable.TabIndex = 5;
             this.ExportLable.Text = "Sorteeritud piltide auskoht";
             // 
@@ -131,7 +131,7 @@
             this.ExportTextBox.Location = new System.Drawing.Point(11, 126);
             this.ExportTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.ExportTextBox.Name = "ExportTextBox";
-            this.ExportTextBox.Size = new System.Drawing.Size(472, 26);
+            this.ExportTextBox.Size = new System.Drawing.Size(472, 30);
             this.ExportTextBox.TabIndex = 4;
             // 
             // ProgressBar

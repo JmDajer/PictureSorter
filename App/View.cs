@@ -5,7 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -20,9 +22,35 @@ namespace App
 
         private void SortButton_Click(object sender, EventArgs e)
         {
-            SortingEngine sortingEngine = new SortingEngine(ImportTextBox.Text, ExportTextBox.Text);
-            sortingEngine.SortingProgressChanged += SortingEngine_SortingProgressChanged;
-            sortingEngine.Sort();
+            bool formReady = true;
+
+            if (ImportTextBox.Text is null || ImportTextBox.Text is "")
+            {
+                ImportErrorProvider.SetError(this.ImportButton, "Piltide kausta on vaja!");
+                formReady = false;
+                
+            } 
+            else
+            {
+                ImportErrorProvider.SetError(this.ImportButton, string.Empty);
+            }
+
+            if (ExportTextBox.Text is null || ExportTextBox.Text is "")
+            {
+                ExportErrorProvider.SetError(this.ExportButton, "Kausta kuhu sorteeritud pildid panna on vaja!");
+                formReady = false;
+            }
+            else
+            {
+                ExportErrorProvider.SetError(this.ExportButton, string.Empty);
+            }
+
+            if (formReady) {
+                SortingEngine sortingEngine = new SortingEngine(ImportTextBox.Text, ExportTextBox.Text);
+                ProgressText.Text = "Töötlen, palun oota.";
+                sortingEngine.Sort();
+                ProgressText.Text = "Valmis!";
+            }
         }
 
         private void ImportButton_Click(object sender, EventArgs e)
@@ -47,11 +75,6 @@ namespace App
                 ExportTextBox.Text = dialog.SelectedPath;
                 Environment.SpecialFolder root = dialog.RootFolder;
             }
-        }
-
-        private void SortingEngine_SortingProgressChanged(object sender, SortingProgressEventArgs e)
-        {
-            ProgressBar.Value = e.Progress;
         }
     }
 }

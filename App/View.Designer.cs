@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(View));
             this.SortButton = new System.Windows.Forms.Button();
             this.ImportTextBox = new System.Windows.Forms.TextBox();
@@ -36,10 +37,15 @@
             this.ExportButton = new System.Windows.Forms.Button();
             this.ExportLable = new System.Windows.Forms.Label();
             this.ExportTextBox = new System.Windows.Forms.TextBox();
-            this.ProgressBar = new System.Windows.Forms.ProgressBar();
             this.ImportBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.FolderSettingsBox = new System.Windows.Forms.GroupBox();
+            this.backgroundWorkerProgress = new System.ComponentModel.BackgroundWorker();
+            this.ProgressText = new System.Windows.Forms.Label();
+            this.ImportErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ExportErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.FolderSettingsBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImportErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExportErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // SortButton
@@ -58,7 +64,7 @@
             this.SortButton.Padding = new System.Windows.Forms.Padding(4);
             this.SortButton.Size = new System.Drawing.Size(75, 41);
             this.SortButton.TabIndex = 0;
-            this.SortButton.Text = "Sorteeri";
+            this.SortButton.Text = "Start";
             this.SortButton.UseVisualStyleBackColor = false;
             this.SortButton.Click += new System.EventHandler(this.SortButton_Click);
             // 
@@ -71,7 +77,7 @@
             this.ImportTextBox.Location = new System.Drawing.Point(11, 65);
             this.ImportTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.ImportTextBox.Name = "ImportTextBox";
-            this.ImportTextBox.Size = new System.Drawing.Size(472, 30);
+            this.ImportTextBox.Size = new System.Drawing.Size(450, 26);
             this.ImportTextBox.TabIndex = 1;
             // 
             // ImportLable
@@ -81,7 +87,7 @@
             this.ImportLable.Location = new System.Drawing.Point(10, 42);
             this.ImportLable.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ImportLable.Name = "ImportLable";
-            this.ImportLable.Size = new System.Drawing.Size(123, 23);
+            this.ImportLable.Size = new System.Drawing.Size(102, 19);
             this.ImportLable.TabIndex = 2;
             this.ImportLable.Text = "Piltide asukoht";
             // 
@@ -89,10 +95,10 @@
             // 
             this.ImportButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ImportButton.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ImportButton.Location = new System.Drawing.Point(487, 64);
+            this.ImportButton.Location = new System.Drawing.Point(465, 65);
             this.ImportButton.Margin = new System.Windows.Forms.Padding(0);
             this.ImportButton.Name = "ImportButton";
-            this.ImportButton.Size = new System.Drawing.Size(30, 27);
+            this.ImportButton.Size = new System.Drawing.Size(30, 26);
             this.ImportButton.TabIndex = 3;
             this.ImportButton.Text = "···";
             this.ImportButton.UseVisualStyleBackColor = true;
@@ -102,10 +108,10 @@
             // 
             this.ExportButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ExportButton.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExportButton.Location = new System.Drawing.Point(487, 125);
+            this.ExportButton.Location = new System.Drawing.Point(465, 126);
             this.ExportButton.Margin = new System.Windows.Forms.Padding(0);
             this.ExportButton.Name = "ExportButton";
-            this.ExportButton.Size = new System.Drawing.Size(30, 27);
+            this.ExportButton.Size = new System.Drawing.Size(30, 26);
             this.ExportButton.TabIndex = 6;
             this.ExportButton.Text = "···";
             this.ExportButton.UseVisualStyleBackColor = true;
@@ -118,7 +124,7 @@
             this.ExportLable.Location = new System.Drawing.Point(10, 103);
             this.ExportLable.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ExportLable.Name = "ExportLable";
-            this.ExportLable.Size = new System.Drawing.Size(213, 23);
+            this.ExportLable.Size = new System.Drawing.Size(176, 19);
             this.ExportLable.TabIndex = 5;
             this.ExportLable.Text = "Sorteeritud piltide auskoht";
             // 
@@ -131,26 +137,18 @@
             this.ExportTextBox.Location = new System.Drawing.Point(11, 126);
             this.ExportTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.ExportTextBox.Name = "ExportTextBox";
-            this.ExportTextBox.Size = new System.Drawing.Size(472, 30);
+            this.ExportTextBox.Size = new System.Drawing.Size(450, 26);
             this.ExportTextBox.TabIndex = 4;
-            // 
-            // ProgressBar
-            // 
-            this.ProgressBar.Location = new System.Drawing.Point(156, 222);
-            this.ProgressBar.Margin = new System.Windows.Forms.Padding(2);
-            this.ProgressBar.Name = "ProgressBar";
-            this.ProgressBar.Size = new System.Drawing.Size(444, 41);
-            this.ProgressBar.TabIndex = 7;
             // 
             // FolderSettingsBox
             // 
             this.FolderSettingsBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.FolderSettingsBox.Controls.Add(this.ImportTextBox);
             this.FolderSettingsBox.Controls.Add(this.ImportLable);
             this.FolderSettingsBox.Controls.Add(this.ExportButton);
             this.FolderSettingsBox.Controls.Add(this.ImportButton);
             this.FolderSettingsBox.Controls.Add(this.ExportLable);
             this.FolderSettingsBox.Controls.Add(this.ExportTextBox);
+            this.FolderSettingsBox.Controls.Add(this.ImportTextBox);
             this.FolderSettingsBox.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FolderSettingsBox.Location = new System.Drawing.Point(75, 32);
             this.FolderSettingsBox.Margin = new System.Windows.Forms.Padding(2);
@@ -161,14 +159,40 @@
             this.FolderSettingsBox.TabStop = false;
             this.FolderSettingsBox.Text = "Kausta sätted";
             // 
+            // backgroundWorkerProgress
+            // 
+            this.backgroundWorkerProgress.WorkerReportsProgress = true;
+            // 
+            // ProgressText
+            // 
+            this.ProgressText.AutoSize = true;
+            this.ProgressText.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProgressText.Location = new System.Drawing.Point(176, 231);
+            this.ProgressText.Name = "ProgressText";
+            this.ProgressText.Size = new System.Drawing.Size(305, 19);
+            this.ProgressText.TabIndex = 9;
+            this.ProgressText.Text = "Vali kaustad millega töödelda ning vajuta \"Start\".";
+            // 
+            // ImportErrorProvider
+            // 
+            this.ImportErrorProvider.BlinkRate = 500;
+            this.ImportErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.ImportErrorProvider.ContainerControl = this;
+            // 
+            // ExportErrorProvider
+            // 
+            this.ExportErrorProvider.BlinkRate = 500;
+            this.ExportErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.ExportErrorProvider.ContainerControl = this;
+            // 
             // View
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(662, 342);
+            this.Controls.Add(this.ProgressText);
             this.Controls.Add(this.FolderSettingsBox);
-            this.Controls.Add(this.ProgressBar);
             this.Controls.Add(this.SortButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -178,7 +202,10 @@
             this.Text = "PictureManager";
             this.FolderSettingsBox.ResumeLayout(false);
             this.FolderSettingsBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImportErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExportErrorProvider)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -191,9 +218,12 @@
         private System.Windows.Forms.Button ExportButton;
         private System.Windows.Forms.Label ExportLable;
         private System.Windows.Forms.TextBox ExportTextBox;
-        private System.Windows.Forms.ProgressBar ProgressBar;
         private System.Windows.Forms.FolderBrowserDialog ImportBrowserDialog;
         private System.Windows.Forms.GroupBox FolderSettingsBox;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerProgress;
+        private System.Windows.Forms.Label ProgressText;
+        private System.Windows.Forms.ErrorProvider ImportErrorProvider;
+        private System.Windows.Forms.ErrorProvider ExportErrorProvider;
     }
 }
 

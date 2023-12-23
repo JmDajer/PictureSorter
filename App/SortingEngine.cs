@@ -14,11 +14,6 @@ using System.Windows.Media.Imaging;
 namespace App
 {
 
-    internal class SortingProgressEventArgs : EventArgs
-    {
-        public int Progress { get; set; }
-    }
-
     internal class SortingEngine
     {
         const int DateTakenId = 0x9003;
@@ -26,24 +21,15 @@ namespace App
         private string ImportPath { get; set; }
         private string ExportPath { get; set; }
 
-        public event EventHandler<SortingProgressEventArgs> SortingProgressChanged;
-
         public SortingEngine(string importPath, string exportPath)
         {
             ImportPath = importPath;
             ExportPath = exportPath;
         }
 
-        protected virtual void OnSortingProgressChanged(int progress)
-        {
-            SortingProgressChanged?.Invoke(this, new SortingProgressEventArgs { Progress = progress });
-        }
-
         public void Sort()
         {
             var images = Directory.EnumerateFiles(ImportPath).ToArray();
-            var currentImage = 0;
-            var totalImages = images.Length;
 
             foreach (var image in images)
             {
@@ -52,10 +38,6 @@ namespace App
                 var fileName = image.Split(Path.DirectorySeparatorChar).Last();
                 var copyFilePath = Path.Combine(folderPath, fileName);
                 File.Copy(image, copyFilePath, true);
-
-                currentImage++;
-                var progress = currentImage / totalImages * 100;
-                OnSortingProgressChanged(progress);
             }
         }
 

@@ -20,7 +20,8 @@ namespace App
 
         private void SortButton_Click(object sender, EventArgs e)
         {
-
+            SortingEngine sortingEngine = new SortingEngine(ImportTextBox.Text, ExportTextBox.Text);
+            sortingEngine.Sort();
         }
 
         private void ImportButton_Click(object sender, EventArgs e)

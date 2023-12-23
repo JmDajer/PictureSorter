@@ -22,16 +22,26 @@ namespace App
 
         public void Sort()
         {
-            
+            var images = Directory.EnumerateFiles(ImportPath);
+            foreach (var image in images)
+            {
+                var date = GetImageDate(image);
+                var folderPath = CreateFolder(date);
+                var fileName = image.Split(Path.PathSeparator).Last();
+                var copyFilePath = Path.Combine(folderPath, fileName);
+                File.Copy(image, copyFilePath, true);
+            }
         }
 
-        private void CreateFolder(string folderName)
+        private string CreateFolder(string folderName)
         {
-            var folderPath = ExportPath + Path.PathSeparator + folderName;
+            var folderPath = Path.Combine(ExportPath, folderName);
             if (!Directory.Exists(folderPath))
             {
                 Directory.CreateDirectory(folderPath);
             }
+
+            return folderPath;
         }
 
         private string GetImageDate(string imagePath)
@@ -51,10 +61,13 @@ namespace App
                             string dateString = Encoding.UTF8.GetString(propertyItem.Value);
                             DateTime dateTime = DateTime.ParseExact(dateString, "yyyy:MM:d H:m:s", null);
                             fileDate = dateTime.Date.ToString();
+                            image.Dispose();
                         }
-                    }
+                    }   
                 }
-            } catch (Exception e)
+            } 
+            
+            catch (Exception e)
             {
                 Console.Error.WriteLine(e.ToString());
             }
